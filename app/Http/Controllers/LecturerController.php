@@ -91,7 +91,7 @@ class LecturerController extends Controller
     {
         $result = array('count' => 0);
 
-        $data = M_Lecturer::where('nim',$request->nim)->count();
+        $data = M_Lecturer::where('nidn',$request->nidn)->count();
 
         if($data > 0)
         {

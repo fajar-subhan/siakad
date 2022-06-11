@@ -3,8 +3,8 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/fajar-subhan/WebChat">
-    <img src="https://github.com/fajar-subhan/WebChat/blob/master/assets/images/icons/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/fajar-subhan/siakad">
+    <img src="https://github.com/fajar-subhan/siakad/blob/master/storage/app/public/images/logo/logo_git.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Siakad</h3>

@@ -4,14 +4,8 @@
 
 <div align="center">
   <a href="https://github.com/fajar-subhan/siakad">
-    <img src="https://github.com/fajar-subhan/siakad/blob/master/storage/app/public/images/logo/logo_git.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/fajar-subhan/siakad/blob/master/storage/app/public/images/logo/logo_git.png" alt="Logo" width="300">
   </a>
-
-<h3 align="center">Siakad</h3>
-
-  <p align="center">
-    Academic Information System
-  </p>
 </div>
 
 

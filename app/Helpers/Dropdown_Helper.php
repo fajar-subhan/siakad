@@ -96,9 +96,9 @@ if(!function_exists('roles'))
  */
 if(!function_exists('major'))
 {
-    function major()
+    function major($code = null)
     {
-        return Dropdown()->_major();
+        return Dropdown()->_major($code);
     }
 }
 
@@ -109,9 +109,9 @@ if(!function_exists('major'))
  */
 if(!function_exists('subject'))
 {
-    function subject()
+    function subject($code = null)
     {
-        return Dropdown()->_subject();
+        return Dropdown()->_subject($code);
     }
 }
 

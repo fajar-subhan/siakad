@@ -217,4 +217,23 @@ class CurriculumController extends Controller
 
         return response()->json($result);
     }
+
+    /**
+     * Take course data based on the chosen major
+     * 
+     * @return array $subject
+     */
+    public function getsubject(Request $request)
+    {
+        $subject = subject($request->major_code);
+
+        if(count($subject) > 0)
+        {
+            echo select('subject_curriculum','form-control',$subject);
+        }
+        else 
+        {
+            echo select('subject_curriculum','form-control',array());
+        }
+    }
 }

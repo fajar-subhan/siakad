@@ -40,8 +40,6 @@
                         </label>
                         <!--end::Label-->
                         @php echo select('major_course_schedule','form-control',major()) @endphp
-                        <div class="fv-plugins-message-container invalid-feedback" id="major_course_schedule_error">
-                        </div>
                     </div>
                     <!--end::Input Jurusan-->
 
@@ -53,8 +51,8 @@
                             <span class="required">Matakuliah</span>
                         </label>
                         <!--end::Label-->
-                        @php echo select('subject_course_schedule','form-control',subject()) @endphp
-                        <div class="fv-plugins-message-container invalid-feedback" id="subject_course_schedule_error">
+                        <div id="subject_course_schedule_div">
+                            @php echo select('subject_course_schedule','form-control',subject()) @endphp
                         </div>
                     </div>
                     <!-- end::Matakuliah -->
@@ -67,8 +65,6 @@
                         </label>
                         <!--end::Label-->
                         @php echo select('lecturer_course_schedule','form-control',lecturer()) @endphp
-                        <div class="fv-plugins-message-container invalid-feedback" id="lecturer_course_schedule_error">
-                        </div>
                     </div>
                     <!-- end::Dosen -->
 
@@ -80,8 +76,6 @@
                         </label>
                         <!--end::Label-->
                         @php echo select('room_course_schedule','form-control',room()) @endphp
-                        <div class="fv-plugins-message-container invalid-feedback" id="room_course_schedule_error">
-                        </div>
                     </div>
                     <!-- end::Ruangan -->
 

@@ -27,6 +27,12 @@ class SubjectController extends Controller
                 ';
                 return $action;
             })
+            ->addColumn('major',function($row)
+            {
+                $major = major($row->major_code)[$row->major_code];
+
+                return $major;
+            })
             ->make(true);
     }
 
@@ -117,9 +123,10 @@ class SubjectController extends Controller
             }
 
             $result = M_Subject::create([
-                'code'  => strip_tags(trim($request->code_subject)),
-                'name'  => strip_tags(trim($request->name_subject)),
-                'sks'   => strip_tags(trim($request->sks_subject)),
+                'code'      => strip_tags(trim($request->code_subject)),
+                'name'      => strip_tags(trim($request->name_subject)),
+                'sks'       => strip_tags(trim($request->sks_subject)),
+                'major_code'=> strip_tags(trim($request->major_subject)),
                 'order' => $order,
                 'active'=> 1
             ]);
@@ -159,9 +166,10 @@ class SubjectController extends Controller
         try 
         {
             $subject = M_Subject::find($id);
-            $subject->name  = request('name_subject');
-            $subject->sks   = request('sks_subject');
-            $subject->active= request('status_subject'); 
+            $subject->name          = request('name_subject');
+            $subject->sks           = request('sks_subject');
+            $subject->active        = request('status_subject'); 
+            $subject->major_code    = request('major_code'); 
             $subject->save();
 
             $result = ['success' => true,'message' => 'Berhasil mengubah matakuliah'];

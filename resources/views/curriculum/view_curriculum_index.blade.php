@@ -1,4 +1,4 @@
-@extends('layouts.app',$data)
+@extends('layouts.app', $data)
 
 @section('content')
     <div class="post d-flex flex-column-fluid">
@@ -198,11 +198,9 @@
         /* When the plus button outside the modal is clicked */
         var addButtonModal = function() {
             $("#div_status_curriculum").hide();
-            
             $('#major_curriculum').val($('#major_curriculum option:first-child').val()).trigger('change');
             $('#subject_curriculum').val($('#subject_curriculum option:first-child').val()).trigger('change');
             $('#semester').val($('#semester option:first-child').val()).trigger('change');
-
 
             $("#modal_curriculum_title").html(
                 '<i class="fa-solid fa-plus" style="font-size:100%;color:black;"></i> Tambah Kurikulum');
@@ -219,14 +217,14 @@
         var eventSave = function(e) {
             e.preventDefault();
 
-            var major_curriculum    = $("#major_curriculum").val();
-            var subject_curriculum  = $("#subject_curriculum").val();
-            var semester            = $("#semester").val();
+            var major_curriculum = $("#major_curriculum").val();
+            var subject_curriculum = $("#subject_curriculum").val();
+            var semester = $("#semester").val();
 
             var data = {
-            major: major_curriculum,
-            subject: subject_curriculum,
-            semester: semester
+                major: major_curriculum,
+                subject: subject_curriculum,
+                semester: semester
             }
 
             $.ajax({
@@ -248,7 +246,7 @@
                         $("#major_filter").select2({
                             placeholder: "-- Silahkan Pilih --",
                             allowClear: true
-                        }).val('').trigger('change'); 
+                        }).val('').trigger('change');
 
                         $("#subject_filter").select2({
                             placeholder: "-- Silahkan Pilih --",
@@ -286,7 +284,7 @@
                         $("#major_filter").select2({
                             placeholder: "-- Silahkan Pilih --",
                             allowClear: true
-                        }).val('').trigger('change'); 
+                        }).val('').trigger('change');
 
                         $("#subject_filter").select2({
                             placeholder: "-- Silahkan Pilih --",
@@ -346,14 +344,37 @@
             });
         }
 
+        $("#major_curriculum").on('change', function(e) {
+            var major_code = e.target.value;
+
+            $.ajax({
+                url: 'getsubjectbymajor1',
+                method: 'post',
+                data: {
+                    major_code: major_code
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(xhr) {
+                    $("#subject_curriculum_div").html(xhr);
+                    $("#subject_curriculum").select2({
+                    });
+                    $('[aria-controls="select2-subject_curriculum-container"]').css({
+                        'width': '80%'
+                    });
+                }
+            })
+        });
+
         var eventUpdate = function(e) {
             e.preventDefault();
 
-            var major       = $("#major_curriculum").val();
-            var subject     = $("#subject_curriculum").val();
-            var semester    = $("#semester").val();
-            var status      = $("#status_curriculum").val();
-            var id          = $("#id_curriculum").val();
+            var major = $("#major_curriculum").val();
+            var subject = $("#subject_curriculum").val();
+            var semester = $("#semester").val();
+            var status = $("#status_curriculum").val();
+            var id = $("#id_curriculum").val();
 
             $.ajax({
                 url: 'kurikulum/' + id,
@@ -363,7 +384,7 @@
                     subject: subject,
                     semester: semester,
                     status: status,
-                    id : id
+                    id: id
                 },
                 dataType: 'json',
                 headers: {
@@ -380,7 +401,7 @@
                         $("#major_filter").select2({
                             placeholder: "-- Silahkan Pilih --",
                             allowClear: true
-                        }).val('').trigger('change'); 
+                        }).val('').trigger('change');
 
                         $("#subject_filter").select2({
                             placeholder: "-- Silahkan Pilih --",
@@ -418,7 +439,7 @@
                         $("#major_filter").select2({
                             placeholder: "-- Silahkan Pilih --",
                             allowClear: true
-                        }).val('').trigger('change'); 
+                        }).val('').trigger('change');
 
                         $("#subject_filter").select2({
                             placeholder: "-- Silahkan Pilih --",
@@ -491,7 +512,7 @@
                                         'content')
                                 },
                                 success: function(xhr) {
-                                    console.log('xhr delete >>> ' , xhr);
+                                    console.log('xhr delete >>> ', xhr);
                                     if (xhr.success) {
                                         Swal.fire({
                                             title: "Berhasil",
@@ -507,7 +528,7 @@
                                             $("#major_filter").select2({
                                                 placeholder: "-- Silahkan Pilih --",
                                                 allowClear: true
-                                            }).val('').trigger('change'); 
+                                            }).val('').trigger('change');
 
                                             $("#subject_filter").select2({
                                                 placeholder: "-- Silahkan Pilih --",
@@ -553,9 +574,9 @@
                         url: 'kurikulum/data',
                         type: 'get',
                         data: function(data) {
-                            data.major_filter   = $("#major_filter").val();
+                            data.major_filter = $("#major_filter").val();
                             data.subject_filter = $("#subject_filter").val();
-                            data.semester       = $("#semester_filter").val();
+                            data.semester = $("#semester_filter").val();
                         }
                     },
                     columns: [{

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +24,7 @@ Route::post('/login','Auth\LoginController@login')->name('login.post');
 Route::get('/password/reset','Auth\ResetController@showLinkRequestForm')->name('password.request');
 // Proses reset password 
 Route::post('/password/reset','Auth\ResetController@reset')->name('password.process');
-Route::get('password/dashboard/status_mahasiswa',function(){});
-Route::get('password/dashboard/status_dosen',function(){});
+
 Route::get('password/reset/form-email','Auth\ResetController@resetForm');
 Route::patch('password/reset/proses-password','Auth\ResetController@prosesUpdate');
 /* ===== End::Module Reset ===== */
@@ -96,6 +94,10 @@ Route::group(['middleware' => ['role:Admin','auth']],function()
     Route::get('pengguna/data','UserController@data')->name('pengguna.data');
     Route::post('pengguna/check_code','UserController@checkCode')->name('pengguna.check_code');
     Route::resource('pengguna','UserController');
+
+    /* ----- Ambil data matakuliah berdasarkan jurusan ---- */
+    Route::post('getsubjectbymajor1','CurriculumController@getsubject');
+    Route::post('getsubjectbymajor2','CourseScheduleController@getsubject');
 });
 /* ------------ End Roles Admin ------------------- */
 

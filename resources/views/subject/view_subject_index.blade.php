@@ -72,9 +72,10 @@
                                     </div>
                                 </th>
                                 <th class="text-center">No</th>
-                                <th class="text-center">Kode matakuliah</th>
+                                <th class="text-center">Kode</th>
                                 <th class="text-center">Nama matakuliah</th>
-                                <th class="text-center">Jumlah SKS</th>
+                                <th class="text-center">SKS</th>
+                                <th class="text-center">Jurusan</th>
                                 <th class="text-center">Status</th>
                                 <th class="text-center min-w-100px">
                                     <!--begin::Svg Icon | path: assets/media/icons/duotune/coding/cod001.svg-->
@@ -109,6 +110,17 @@
     <script>
         var duplicate = 0;
         var dt;
+
+        $(document).ready(function() {
+            $('.select2').css({
+                width: '80%',
+                margin: 0
+            });
+        });
+
+        $("#major_subject").select2({
+            dropdownParent: $("#kt_modal_subject_form")
+        });
 
         const icons = `<span class="svg-icon svg-icon-1 svg-icon-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black"/>
@@ -179,6 +191,7 @@
             var code_subject = $("#code_subject").val();
             var name_subject = $("#name_subject").val();
             var sks_subject  = $("#sks_subject").val();
+            var major_subject= $("#major_subject").val();
             var error        = 0;
 
             if (code_subject == "") {
@@ -215,6 +228,7 @@
                 duplicate = 0;
             }
 
+
             if (error == 0 && duplicate == 0) {
                 $.ajax({
                     url: '{{ route('matakuliah.store') }}',
@@ -222,7 +236,8 @@
                     data: {
                         code_subject: code_subject,
                         name_subject: name_subject,
-                        sks_subject: sks_subject
+                        sks_subject: sks_subject,
+                        major_subject: major_subject
                     },
                     dataType: 'json',
                     headers: {
@@ -342,6 +357,7 @@
             var sks_subject     = $("#sks_subject").val();
             var status_subject  = $("#status_subject").val();
             var id_subject      = $("#id_subject").val();
+            var major_code      = $("#major_subject").val();
             var error           = 0;
 
             if (name_subject == "") {
@@ -368,7 +384,8 @@
                     data: {
                         name_subject: name_subject,
                         sks_subject: sks_subject,
-                        status_subject: status_subject
+                        status_subject: status_subject,
+                        major_code : major_code
                     },
                     dataType: 'json',
                     headers: {
@@ -601,12 +618,17 @@
                         },
                         {
                             data: 'name',
-                            width: '5%'
+                            width: '15%'
                         },
                         {
                             data: 'sks',
                             class: 'text-center',
                             width: '5%'
+                        },
+                        {
+                            data: 'major',
+                            class: 'text-center',
+                            width: '15%'
                         },
                         {
                             data: 'active',

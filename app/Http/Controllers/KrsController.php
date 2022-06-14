@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\M_CollegeStudent;
 use Illuminate\Http\Request;
 use App\Models\M_Krs;
 use App\Models\M_Subject;
-use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -16,8 +16,13 @@ class KrsController extends Controller
 
     public function data()
     {
+        $college_student = M_CollegeStudent::select('major_code')
+        ->where('nim',Auth::user()->nim)
+        ->first();
+
         $data   = M_Subject::query()
         ->where('active',1)
+        ->where('major_code',$college_student->major_code)
         ->get();
 
         return DataTables::of($data)

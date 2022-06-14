@@ -31,7 +31,7 @@
                 <form id="kt_modal_curriculum_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
                     @php echo hidden('id_curriculum','') @endphp
 
-                    <!--begin::Input Kode Ruangan -->
+                    <!--begin::Input Nama Jurusan -->
                     <div class="d-flex flex-column mb-7 fv-row fv-plugins-icon-container">
                         <!--begin::Label-->
                         <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
@@ -39,21 +39,21 @@
                         </label>
                         <!--end::Label-->
                         @php echo select('major_curriculum','form-control',major()) @endphp
-                        <div class="fv-plugins-message-container invalid-feedback" id="major_curriculum_error"></div>
                     </div>
-                    <!--end::Input Kode Ruangan-->
+                    <!--end::Input Nama Jurusan-->
 
-                    <!--Start::Input Nama Ruangan-->
+                    <!--Start::Input Nama Matakuliah -->
                     <div class="d-flex flex-column mb-7 fv-row fv-plugins-icon-container">
                         <!--begin::Label-->
                         <label class="d-flex align-items-center fs-6 fw-bold form-label mb-2">
                             <span class="required">Nama Matakuliah</span>
                         </label>
                         <!--end::Label-->
-                        @php echo select('subject_curriculum','form-control',subject()) @endphp
-                        <div class="fv-plugins-message-container invalid-feedback" id="suject_curriculum_error"></div>
+                        <div id="subject_curriculum_div">
+                            @php echo select('subject_curriculum','form-control',subject()) @endphp
+                        </div>
                     </div>
-                    <!--End::Input Nama Ruangan-->
+                    <!--End::Input Nama Matakuliah-->
 
                     <!-- begin::Semester -->
                     <div class="d-flex flex-column mb-7 fv-row fv-plugins-icon-container">
@@ -63,7 +63,6 @@
                         </label>
                         <!--end::Label-->
                         @php echo select('semester','form-control',semester()) @endphp
-                        <div class="fv-plugins-message-container invalid-feedback" id="semester_curriculum_error"></div>
                     </div>
                     <!-- end::Semester -->
 

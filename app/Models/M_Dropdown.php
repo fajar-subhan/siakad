@@ -27,16 +27,30 @@ class M_Dropdown extends Model
     /**
      * Major Active Data
      * 
+     * @param null $code
      * @return array $major 
      */
-    public function _major()
+    public function _major($code)
     {
-        $major = DB::table('mst_major')
-        ->select('code','name')
-        ->where('active','=',1)
-        ->orderBy('order','asc')
-        ->get()
-        ->pluck('name','code')->toArray();
+        if(!is_null($code))
+        {
+            $major = DB::table('mst_major')
+            ->select('code','name')
+            ->where('active','=',1)
+            ->where('code',$code)
+            ->orderBy('order','asc')
+            ->get()
+            ->pluck('name','code')->toArray();
+        }
+        else 
+        {
+            $major = DB::table('mst_major')
+            ->select('code','name')
+            ->where('active','=',1)
+            ->orderBy('order','asc')
+            ->get()
+            ->pluck('name','code')->toArray();
+        }
 
         return $major;
     }
@@ -46,15 +60,27 @@ class M_Dropdown extends Model
      * 
      * @return array $subject 
      */
-    public function _subject()
+    public function _subject($code)
     {
-        $subject = DB::table('mst_subject')
-        ->select('code','name')
-        ->where('active','=',1)
-        ->orderBy('order','asc')
-        ->get()
-        ->pluck('name','code')->toArray();
-
+        if(!is_null($code))
+        {
+            $subject = DB::table('mst_subject')
+            ->select('code','name')
+            ->where('active','=',1)
+            ->where('major_code',$code)
+            ->orderBy('order','asc')
+            ->get()
+            ->pluck('name','code')->toArray();
+        }
+        else 
+        {
+            $subject = DB::table('mst_subject')
+            ->select('code','name')
+            ->where('active','=',1)
+            ->orderBy('order','asc')
+            ->get()
+            ->pluck('name','code')->toArray();
+        }
         return $subject;
     }
 

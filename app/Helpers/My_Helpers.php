@@ -118,11 +118,6 @@ if(!function_exists('GetNidnLecturer'))
 {
     function GetNidnLecturer($subject_code,$major_code)
     {
-        $major_code = DB::table('mst_college_student')
-        ->select('major_code')
-        ->where('nim',Auth::user()->nim)
-        ->first()->major_code;
-
         $lecturer = DB::table('mst_course_schedule')
         ->select('nidn')
         ->where('subject_code',$subject_code)

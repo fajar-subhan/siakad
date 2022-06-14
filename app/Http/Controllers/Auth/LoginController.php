@@ -61,7 +61,7 @@ class LoginController extends Controller
                 ]
             );
             
-            if(!$validator->fails())
+            if($validator->fails())
             {
                 $result = ['status' => false,'message' => 'Email atau password tidak sessuai'];
             }
@@ -70,6 +70,11 @@ class LoginController extends Controller
                 $credential = $request->only(['email','password']);
 
                 $user = User::where('email',$request->email)->first();
+
+                if(is_null($user))
+                {
+                    $result = ['status' => false,'message' => 'Email atau password tidak sessuai'];
+                }
 
                 if($user->user_active == 0)
                 {

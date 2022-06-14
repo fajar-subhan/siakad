@@ -61,7 +61,7 @@ class LoginController extends Controller
                 ]
             );
             
-            if($validator->fails())
+            if(!$validator->fails())
             {
                 $result = ['status' => false,'message' => 'Email atau password tidak sessuai'];
             }

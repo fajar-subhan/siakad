@@ -16,6 +16,7 @@ class CreateSubjectTable extends Migration
         Schema::create('mst_subject', function (Blueprint $table) {
             $table->id();
             $table->string('code',10)->unique();
+            $table->string('major_code',10)->index();
             $table->string('name',50);
             $table->integer('sks');
             $table->tinyInteger('active')->default(1);
